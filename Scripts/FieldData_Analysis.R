@@ -1,3 +1,4 @@
+# Git has been integrated
 rm(list = ls())
 library(tidyverse) 
 library(lubridate)
