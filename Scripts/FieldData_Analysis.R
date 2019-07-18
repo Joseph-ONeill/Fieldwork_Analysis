@@ -1,6 +1,6 @@
-# Git has been integrated
+# Git and Atom has been integrated
 rm(list = ls())
-library(tidyverse) 
+library(tidyverse)
 library(lubridate)
 library(BIOMASS)
 library(ape)
@@ -57,9 +57,9 @@ Field_Data <- Field_Data %>%
   mutate(Carbon_Mg= AGB_Mg*0.47)
 
 
-Field_Carbon <- Field_Data %>% 
+Field_Carbon <- Field_Data %>%
   group_by(Plot) %>%
-  dplyr::summarise(Total_C = sum(Carbon_Mg)) %>% 
+  dplyr::summarise(Total_C = sum(Carbon_Mg)) %>%
   mutate(C_ha=Total_C/0.04)
 
 hist(Field_Carbon$C_ha)
@@ -95,14 +95,14 @@ barplot(Field_Carbon$C_ha, Field_Carbon$Plot)
 #   scale_color_manual(values = cbPalette)+# Jitter color palette
 #   ylab("Height(m)") +
 #   xlab("Location")+
-#   scale_y_continuous(breaks = c(0,10,20,30,40,50))+ 
+#   scale_y_continuous(breaks = c(0,10,20,30,40,50))+
 #   ylim(1,50)+
 #   theme_bw()+
 #   theme(text = element_text(size=15), axis.text.x = element_blank(),
 #         axis.title.x = element_text(margin = margin(t = 18, r = 0, b = 0, l = 0)),
 #         axis.title.y = element_text(margin = margin(t = 0, r = 18, b = 0, l = 0)))
-# 
-# 
+#
+#
 # # Height and diameter relationship------------------------------------------------------------------------------------
 # Field_Data %>%
 #   na.omit %>%
@@ -116,14 +116,14 @@ barplot(Field_Carbon$C_ha, Field_Carbon$Plot)
 #   theme(text = element_text(size=15),axis.text.x  = element_text(angle=0, hjust=2),
 #         axis.title.x = element_text(margin = margin(t = 18, r = 0, b = 0, l = 0)),
 #         axis.title.y = element_text(margin = margin(t = 0, r = 18, b = 0, l = 0)))
-# 
+#
 # Field_Data %>% lm(H_m~Dbh_cm)
-# 
+#
 # LmHD <- lm(Field_Data$H_m~Field_Data$Dbh_cm)
 # summary(LmHD)
-# 
-# 
-# 
+#
+#
+#
 # Draft-------
 #   Data1 <- na.omit(Field_Data)
 # > View(Data1)
@@ -133,7 +133,7 @@ barplot(Field_Carbon$C_ha, Field_Carbon$Plot)
 # > Data2 <- na.omit(Field_Data[,-Genus])
 # Error in `[.data.frame`(Field_Data, , -Genus) : object 'Genus' not found
 # > Data2 <- na.omit(Field_Data[,-Field_Data$Genus])
-# Error in `[.data.frame`(Field_Data, , -Field_Data$Genus) : 
+# Error in `[.data.frame`(Field_Data, , -Field_Data$Genus) :
 #   undefined columns selected
 # In addition: Warning message:
 #   In Ops.factor(Field_Data$Genus) : ‘-’ not meaningful for factors
