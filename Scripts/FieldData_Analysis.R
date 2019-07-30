@@ -1,10 +1,20 @@
 # Git has been integrated
 rm(list = ls())
+
+# install.packages("BIOMASS")
+# install.packages("Rtools")
+# install.packages("lubridate")
+# install.packages("ggplot2")
+# install.packages("tidyverse")
+# install.packages("pillar")
+# install.packages("stringr")
+
 library(tidyverse) 
 library(lubridate)
 library(BIOMASS)
 library(ape)
 library(ggplot2)
+library(measurements)
 summarise = dplyr::summarise
 
 Field_Data <- read.csv("Raw_Data/File_for_OR.csv")
@@ -43,7 +53,6 @@ sum(!dataWD$levelWD%in%c("genus","species"))
 Field_Data$WD <- dataWD$meanWD
 str(Field_Data)
 
-sum(Field_Data$Height_m)
 
 AGBtree<-computeAGB(D=Field_Data$DBH_cm,
                     WD=Field_Data$WD,
@@ -68,6 +77,30 @@ str(Field_Carbon)
 
 # Carbon distribution in the plots---------------------------------------------------------------------------------
 barplot(Field_Carbon$C_ha, Field_Carbon$Plot)
+
+View(Field_Data)
+
+# change the degree symbol to a space
+Field_Data$North = gsub('°', ' ',Field_Data$North)
+Field_Data$North = gsub("'", ' ',Field_Data$North)
+Field_Data$North = gsub('"', ' ',Field_Data$North)
+Field_Data$North = gsub('N', ' ',Field_Data$North)
+Field_Data$North = gsub('   ', ' ',Field_Data$North)
+Field_Data$North = gsub('  ', ' ',Field_Data$North)
+
+Field_Data$East = gsub('°', ' ',Field_Data$East)
+Field_Data$East = gsub("'", ' ',Field_Data$East)
+Field_Data$East = gsub('"', ' ',Field_Data$East)
+Field_Data$East = gsub('E', ' ',Field_Data$East)
+Field_Data$East = gsub('   ', ' ',Field_Data$East)
+Field_Data$East = gsub("  ",' ',Field_Data$East)
+
+
+# convert from decimal minutes to decimal degrees
+Field_Data$Lat = measurements::conv_unit(Field_Data$North, from = 'deg_min_sec', to = 'dec_deg')
+Field_Data$Long = measurements::conv_unit(Field_Data$East, from = 'deg_min_sec', to = 'dec_deg')
+
+
 
 # Diameter distribution in three areas---------------------------------------------------------------------------
 
