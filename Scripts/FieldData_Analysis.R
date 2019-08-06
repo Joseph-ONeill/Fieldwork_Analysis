@@ -1,6 +1,6 @@
 # Git and Atom has been integrated
 rm(list = ls())
-<<<<<<< HEAD
+
 
 # install.packages("BIOMASS")
 # install.packages("Rtools")
@@ -10,10 +10,7 @@ rm(list = ls())
 # install.packages("pillar")
 # install.packages("stringr")
 
-library(tidyverse) 
-=======
 library(tidyverse)
->>>>>>> 20c1ae659f47b7cad4abe278035d0cb130e01e45
 library(lubridate)
 library(BIOMASS)
 library(ape)
